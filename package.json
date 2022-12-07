@@ -1,0 +1,45 @@
+{
+  "name": "SyncTutorial",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "prettier": "prettier --write src/*",
+    "generate:partition-based-sync": "npx bluehawk copy . --output=../generated/react-native-partition-based-sync --state=partition-based-sync",
+    "generate:flexible-sync": "npx bluehawk copy . --output=../generated/react-native-flexible-sync --state=flexible-sync",
+    "generate": "npm run generate:partition-based-sync && npm run generate:flexible-sync"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.4",
+    "@realm/react": "^0.3.2",
+    "react": "18.0.0",
+    "react-native": "0.69.5",
+    "react-native-elements": "^3.3.2",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-get-random-values": "^1.8.0",
+    "react-native-reanimated": "^2.0.1",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.0.0",
+    "react-native-vector-icons": "^8.1.0",
+    "realm": "^10.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/runtime": "^7.13.10",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.32.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.70.3",
+    "react-test-renderer": "18.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
