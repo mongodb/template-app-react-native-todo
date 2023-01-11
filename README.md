@@ -20,6 +20,14 @@ Once you have created the App Services App, replace any value in this client's
 `appId` field with your App Services App ID. For help finding this ID, refer
 to: [Find Your Project or App Id](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/)
 
+### Download the Client as a Zip File
+
+If you have downloaded this client as a .zip file from the Atlas App Services
+UI, it does not contain the App Services App ID. You must replace any value 
+in this client's `appId` field in `react-native/realm.json` with your 
+App Services App ID. For help finding this ID, refer to: 
+[Find Your Project or App Id](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/)
+
 ## How to Run the Application for Mac Users:
 
 - make sure you are in this directory
