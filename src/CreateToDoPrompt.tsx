@@ -1,20 +1,26 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text, Input, Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {COLORS} from './Colors';
 
-Icon.loadFont(); // load FontFamily font
+type Props = {
+  onSubmit: ({summary}: {summary: string}) => void;
+};
 
-export function CreateToDoPrompt(props) {
+export function CreateToDoPrompt(props: Props): React.ReactElement<Props> {
   const {onSubmit} = props;
-  const [summary, setSummary] = useState(null);
+  const [summary, setSummary] = useState('');
 
   return (
     <View style={styles.modalWrapper}>
       <Text h4 style={styles.addItemTitle}>
         Add To-Do Item
       </Text>
-      <Input placeholder="What do you want to do?" onChangeText={setSummary} />
+      <Input
+        placeholder="What do you want to do?"
+        onChangeText={(text: string) => setSummary(text)}
+        autoCompleteType={undefined}
+      />
       <Button
         title="Save"
         buttonStyle={styles.saveButton}
@@ -36,5 +42,6 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     width: 280,
+    backgroundColor: COLORS.primary,
   },
 });

@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Realm from 'realm';
 import {useApp} from '@realm/react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {StyleSheet, Text, View, Alert} from 'react-native';
-import {Input, Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {Input, Button, Icon} from 'react-native-elements';
+import {COLORS} from './Colors';
 
-Icon.loadFont(); // load FontAwesome font
-
-export function WelcomeView({navigation, route}) {
+export function WelcomeView(): React.ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,38 +17,43 @@ export function WelcomeView({navigation, route}) {
   const app = useApp();
 
   // signIn() uses the emailPassword authentication provider to log in
-  const signIn = async () => {
+  const signIn = useCallback(async () => {
     const creds = Realm.Credentials.emailPassword(email, password);
     await app.logIn(creds);
-  };
+  }, [app, email, password]);
 
   // onPressSignIn() uses the emailPassword authentication provider to log in
-  const onPressSignIn = async () => {
+  const onPressSignIn = useCallback(async () => {
     try {
-      await signIn(email, password);
-    } catch (error) {
-      Alert.alert(`Failed to sign in: ${error.message}`);
+      await signIn();
+    } catch (error: any) {
+      Alert.alert(`Failed to sign in: ${error?.message}`);
     }
-  };
+  }, [signIn]);
 
   // onPressSignUp() registers the user and then calls signIn to log the user in
-  const onPressSignUp = async () => {
+  const onPressSignUp = useCallback(async () => {
     try {
       await app.emailPasswordAuth.registerUser({email, password});
-      signIn(email, password);
-    } catch (error) {
-      Alert.alert(`Failed to sign up: ${error.message}`);
+      await signIn();
+    } catch (error: any) {
+      Alert.alert(`Failed to sign up: ${error?.message}`);
     }
-  };
+  }, [signIn, app, email, password]);
 
   return (
     <SafeAreaProvider>
       <View style={styles.viewWrapper}>
         <Text style={styles.title}>My Sync App</Text>
+        <Text style={styles.subtitle}>
+          Please log in or register with a Device Sync user account. This is
+          separate from your Atlas Cloud login.
+        </Text>
         <Input
           placeholder="email"
           onChangeText={setEmail}
           autoCapitalize="none"
+          autoCompleteType={undefined}
         />
         <Input
           placeholder="password"
@@ -58,12 +61,15 @@ export function WelcomeView({navigation, route}) {
           secureTextEntry={passwordHidden}
           rightIcon={
             <Icon
-              name={passwordHidden ? 'eye-slash' : 'eye'}
+              type="material-community"
+              name={passwordHidden ? 'eye-off-outline' : 'eye-outline'}
               size={12}
               color="black"
               onPress={() => setPasswordHidden(!passwordHidden)}
+              tvParallaxProperties={undefined}
             />
           }
+          autoCompleteType={undefined}
         />
         {isInSignUpMode ? (
           <>
@@ -75,6 +81,7 @@ export function WelcomeView({navigation, route}) {
             <Button
               title="Already have an account? Log In"
               type="clear"
+              titleStyle={styles.secondaryButton}
               onPress={() => setIsInSignUpMode(!isInSignUpMode)}
             />
           </>
@@ -88,6 +95,7 @@ export function WelcomeView({navigation, route}) {
             <Button
               title="Don't have an account? Create Account"
               type="clear"
+              titleStyle={styles.secondaryButton}
               onPress={() => setIsInSignUpMode(!isInSignUpMode)}
             />
           </>
@@ -106,7 +114,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
   },
+  subtitle: {
+    fontSize: 14,
+    padding: 10,
+    color: 'gray',
+    textAlign: 'center',
+  },
   mainButton: {
     width: 350,
+    backgroundColor: COLORS.primary,
+  },
+  secondaryButton: {
+    color: COLORS.primary,
   },
 });
