@@ -5,12 +5,12 @@
 - Make sure your system is setup to run a React Native application by following the [setup guide](https://reactnative.dev/docs/environment-setup)
 - Set up an Atlas account and [deploy a cluster](https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/)
 - Set up an application in App Services.
+
   - You can use the [`realm-cli`](https://www.mongodb.com/docs/atlas/app-services/cli/) to set up the backend and download a copy of this template:
 
-
-      ```
-      realm-cli apps create -n "<App Name>" --template "react-native.todo.flex"
-      ```
+    ```
+    realm-cli apps create -n "<App Name>" --template "react-native.todo.flex"
+    ```
 
 ## Configuration
 
