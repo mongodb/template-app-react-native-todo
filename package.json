@@ -16,7 +16,7 @@
     "@react-navigation/stack": "^5.14.4",
     "@realm/react": "^0.4.1",
     "react": "18.1.0",
-    "react-native": "0.70.5",
+    "react-native": "0.70.8",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-get-random-values": "^1.8.0",
