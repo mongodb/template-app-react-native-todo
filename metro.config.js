@@ -1,9 +1,5 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const path = require('path');
+const WORKSPACE_ROOT = path.resolve(process.cwd(), '../../');
 
 module.exports = {
   transformer: {
@@ -14,4 +10,5 @@ module.exports = {
       },
     }),
   },
+  watchFolders: [WORKSPACE_ROOT],
 };
