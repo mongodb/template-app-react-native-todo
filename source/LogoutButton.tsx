@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {Pressable, Alert, View, Text, StyleSheet} from 'react-native';
 import {useUser} from '@realm/react';
-import {COLORS} from './Colors';
+import {colors} from './Colors';
 
 export function LogoutButton() {
   const user = useUser();
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: COLORS.primary,
+    color: colors.primary,
   },
 });

@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
-import {realmContext} from './RealmContext';
-
-const {useRealm} = realmContext;
+import {Pressable, StyleSheet, Text} from 'react-native';
+import {useRealm} from '@realm/react';
+import {colors} from './Colors';
 
 export function OfflineModeButton() {
   const realm = useRealm();
@@ -21,16 +19,16 @@ export function OfflineModeButton() {
           togglePauseSync(false);
         }
       }}>
-      <Icon
-        style={styles.icon}
-        name={realm.syncSession?.state === 'active' ? 'wifi' : 'wifi-off'}
-        type="material"
-        tvParallaxProperties={undefined}
-      />
+      <Text style={styles.buttonText}>
+        {realm.syncSession?.state === 'active' ? 'Disable Sync' : 'Enable Sync'}
+      </Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  icon: {padding: 12},
+  buttonText: {
+    padding: 12,
+    color: colors.primary,
+  },
 });

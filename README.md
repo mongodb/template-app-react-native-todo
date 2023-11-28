@@ -2,7 +2,7 @@
 
 A todo list application built with the [React Native SDK](https://www.mongodb.com/docs/realm/sdk/react-native/) and [Atlas Device Sync](https://www.mongodb.com/docs/atlas/app-services/sync/).
 
-You can follow along with the [React Native Tutorial](https://www.mongodb.com/docs/atlas/app-services/tutorial/react-native/) to see how to build, modify, and 
+You can follow along with the [React Native Tutorial](https://www.mongodb.com/docs/atlas/app-services/tutorial/react-native/) to see how to build, modify, and
 run this template app.
 
 ## Prerequisites
@@ -26,9 +26,9 @@ Ensure `atlasConfig.json` exists and contains the following properties:
 
 ### Using the Atlas App Services UI
 
-The easiest way to use this template app is to log on to [Atlas App Services](https://realm.mongodb.com/) and click the **Create App From Template** button. Choose 
-**Real Time Sync**, and then follow the prompts. While the backend app is being 
-created, you can download this React Native template app pre-configured for your new 
+The easiest way to use this template app is to log on to [Atlas App Services](https://realm.mongodb.com/) and click the **Create App From Template** button. Choose
+**Real Time Sync**, and then follow the prompts. While the backend app is being
+created, you can download this React Native template app pre-configured for your new
 app.
 
 ### Cloning from GitHub

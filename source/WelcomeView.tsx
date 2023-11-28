@@ -3,8 +3,8 @@ import Realm from 'realm';
 import {useApp} from '@realm/react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {StyleSheet, Text, View, Alert} from 'react-native';
-import {Input, Button, Icon} from 'react-native-elements';
-import {COLORS} from './Colors';
+import {Input, Button} from '@rneui/base';
+import {colors} from './Colors';
 
 export function WelcomeView(): React.ReactElement {
   const [email, setEmail] = useState('');
@@ -53,23 +53,19 @@ export function WelcomeView(): React.ReactElement {
           placeholder="email"
           onChangeText={setEmail}
           autoCapitalize="none"
-          autoCompleteType={undefined}
         />
         <Input
           placeholder="password"
           onChangeText={setPassword}
           secureTextEntry={passwordHidden}
           rightIcon={
-            <Icon
-              type="material-community"
-              name={passwordHidden ? 'eye-off-outline' : 'eye-outline'}
-              size={12}
-              color="black"
-              onPress={() => setPasswordHidden(!passwordHidden)}
-              tvParallaxProperties={undefined}
+            <Button
+              title={passwordHidden ? 'Show' : 'Hide'}
+              onPress={() => {
+                setPasswordHidden(!passwordHidden);
+              }}
             />
           }
-          autoCompleteType={undefined}
         />
         {isInSignUpMode ? (
           <>
@@ -122,9 +118,9 @@ const styles = StyleSheet.create({
   },
   mainButton: {
     width: 350,
-    backgroundColor: COLORS.primary,
+    backgroundColor: colors.primary,
   },
   secondaryButton: {
-    color: COLORS.primary,
+    color: colors.primary,
   },
 });

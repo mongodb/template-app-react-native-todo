@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text, Input, Button} from 'react-native-elements';
-import {COLORS} from './Colors';
+import {Text, Input, Button} from '@rneui/base';
+import {colors} from './Colors';
 
 type Props = {
   onSubmit: ({summary}: {summary: string}) => void;
@@ -19,7 +19,6 @@ export function CreateToDoPrompt(props: Props): React.ReactElement<Props> {
       <Input
         placeholder="What do you want to do?"
         onChangeText={(text: string) => setSummary(text)}
-        autoCompleteType={undefined}
       />
       <Button
         title="Save"
@@ -36,12 +35,13 @@ const styles = StyleSheet.create({
     minHeight: 400,
     borderRadius: 4,
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   addItemTitle: {
     margin: 20,
   },
   saveButton: {
     width: 280,
-    backgroundColor: COLORS.primary,
+    backgroundColor: colors.primary,
   },
 });

@@ -1,24 +1,21 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import {BSON} from 'realm';
-import {useUser} from '@realm/react';
+import {useUser, useRealm, useQuery} from '@realm/react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Alert, FlatList, StyleSheet, Switch, Text, View} from 'react-native';
-import {Button, Overlay, ListItem, Icon} from 'react-native-elements';
+import {Button, Overlay, ListItem} from '@rneui/base';
 import {dataExplorerLink} from '../atlasConfig.json';
 
 import {CreateToDoPrompt} from './CreateToDoPrompt';
-import {realmContext} from './RealmContext';
 
 import {Item} from './ItemSchema';
-import {COLORS} from './Colors';
+import {colors} from './Colors';
 
 // If you're getting this app code by cloning the repository at
-// https://github.com/mongodb/ template-app-react-native-todo, 
+// https://github.com/mongodb/ template-app-react-native-todo,
 // it does not contain the data explorer link. Download the
 // app template from the Atlas UI to view a link to your data
 const dataExplorerMessage = `View your data in MongoDB Atlas: ${dataExplorerLink}.`;
-
-const {useRealm, useQuery} = realmContext;
 
 const itemSubscriptionName = 'items';
 const ownItemsSubscriptionName = 'ownItems';
@@ -131,6 +128,7 @@ export function ItemListView() {
         </View>
         <Overlay
           isVisible={showNewItemOverlay}
+          overlayStyle={styles.overlay}
           onBackdropPress={() => setShowNewItemOverlay(false)}>
           <CreateToDoPrompt
             onSubmit={({summary}) => {
@@ -143,39 +141,27 @@ export function ItemListView() {
           keyExtractor={item => item._id.toString()}
           data={items}
           renderItem={({item}) => (
-            <ListItem
-              key={`${item._id}`}
-              bottomDivider
-              topDivider
-              hasTVPreferredFocus={undefined}
-              tvParallaxProperties={undefined}>
+            <ListItem key={`${item._id}`} bottomDivider topDivider>
               <ListItem.Title style={styles.itemTitle}>
                 {item.summary}
               </ListItem.Title>
               <ListItem.Subtitle style={styles.itemSubtitle}>
-                {item.owner_id === user?.id ? '(mine)' : ''}
+                <Text>{item.owner_id === user?.id ? '(mine)' : ''}</Text>
               </ListItem.Subtitle>
-              <ListItem.CheckBox
-                checked={item.isComplete}
-                checkedColor={COLORS.primary}
-                iconType="material"
-                checkedIcon="check-box"
-                uncheckedIcon="check-box-outline-blank"
-                onPress={() => toggleItemIsComplete(item._id)}
-              />
-              <Button
-                type="clear"
-                onPress={() => deleteItem(item._id)}
-                icon={
-                  <Icon
-                    type="material"
-                    name="clear"
-                    size={12}
-                    color="#979797"
-                    tvParallaxProperties={undefined}
+              <ListItem.Content>
+                {!item.isComplete && (
+                  <Button
+                    title="Mark done"
+                    type="clear"
+                    onPress={() => toggleItemIsComplete(item._id)}
                   />
-                }
-              />
+                )}
+                <Button
+                  title="Delete"
+                  type="clear"
+                  onPress={() => deleteItem(item._id)}
+                />
+              </ListItem.Content>
             </ListItem>
           )}
         />
@@ -183,15 +169,6 @@ export function ItemListView() {
           title="Add To-Do"
           buttonStyle={styles.addToDoButton}
           onPress={() => setShowNewItemOverlay(true)}
-          icon={
-            <Icon
-              type="material"
-              name={'playlist-add'}
-              style={styles.showCompletedIcon}
-              color="#fff"
-              tvParallaxProperties={undefined}
-            />
-          }
         />
       </View>
     </SafeAreaProvider>
@@ -207,7 +184,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   addToDoButton: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: colors.primary,
+    borderRadius: 4,
+    margin: 5,
+  },
+  completeButton: {
+    backgroundColor: colors.primary,
     borderRadius: 4,
     margin: 5,
   },
@@ -233,5 +215,8 @@ const styles = StyleSheet.create({
   toggleText: {
     flex: 1,
     fontSize: 16,
+  },
+  overlay: {
+    backgroundColor: 'white',
   },
 });
