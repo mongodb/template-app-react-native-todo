@@ -1,28 +1,26 @@
-Nombre                     :                      NodeJS con Grunt
+Nombre                                                                                                                                          :                                                                                                         NodeJS con Grunt
 
 en:
-                         Puesto                        :
-                         ramas                                                :                         [ "principal" ]
- pull_request :
-                          ramas                                                  :                          [ "principal" ]
+                                                                                                                Puesto           :
+                                                                                                              ramas                                                                                                                                                                                                     :                                                       [ "principal" ]
 
 Empleos:
-                          construcción                         :
- Run-on                          :                          ubuntu-último
+                                                                                                           construcción                                                                                                                                            :
+ Run-on                                                                                                                                          :                                                                                                         ubuntu-último
 
  Estrategia :
-                          Matriz                         :
-                          Versión de nodo                                                  :                          [14.x,                          16.x                        ,                          18.x                        ]
+                                                                                                           Matriz                                                                                                                                            :
+                                                                                                           Versión de nodo                                                                                                                                                                                                 :                                                   [14.x,                                                                                              16.x                                                                                            ,                                                                                            18.x                                                                                          ]
 
-                          pasos                         :
-                             -                          usos                         :                          acciones/checkout@v3
+                                                                                                           pasos                                                                                                                                            :
+                                                                                                        -                                                                                                     usos                                                         :                                                       acciones/checkout@v3
 
-                            -                         Nombre                         :                         Usa Node.js ${{                         matrix.node-version                         }}
-                        usos                                                 :                         acciones/configuration-node@v3
+                                                                                                    -                                                                                                 Nombre                                                         :                                                     Usa Node.js ${{                                                                                          matrix.node-version                                                                                          }}
+                                                                                                       usos                                                                                                                                                                                                   :                                                     acciones/configuration-node@v3
  con  :
-                        Versión de nodo                                                 :                         ${{                         matrix.node-version                         }}
+                                                                                                   Versión de nodo                                                                                                                                                                                             :                                                  ${{                                                                                      matrix.node-version                                                                                      }}
 
-                           -                        Nombre                       :                        Construir
-                       Carrera                                               :                        |
-                       npm instalación                       
+                                                                                                -                                                                                             Nombre                                                           :                                                     Construir
+                                                                                               Carrera                                                                                                                                                                                                :                                                     |
+                                                                                      npm instalación                                                                                      
  El grunto 
