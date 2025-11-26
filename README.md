@@ -1,4 +1,10 @@
-# React Native Template App
+> [!Warning]
+> Atlas App Services has reached its end-of-life status and is no longer actively supported by MongoDB.
+
+<del>
+
+  
+  # React Native Template App
 
 A todo list application built with the [React Native SDK](https://www.mongodb.com/docs/realm/sdk/react-native/) and [Atlas Device Sync](https://www.mongodb.com/docs/atlas/app-services/sync/).
 
